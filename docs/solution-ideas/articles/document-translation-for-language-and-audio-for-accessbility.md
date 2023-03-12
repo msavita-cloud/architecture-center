@@ -14,9 +14,9 @@ Here is the process:
 
 1. <B>Ingest</B>: PDF documents, text files, and images can be ingested from multiple sources, such as Azure Blob storage, Outlook, OneDrive, SharePoint, or a 3rd party vendor.
 
-1. <B>MOVE</B>: PowerAutomate triggers and moves the file to Azure Blob storage. Blob triggers then get the original file and call an Azure Function.
+1. <B>Move</B>: PowerAutomate triggers and moves the file to Azure Blob storage. Blob triggers then get the original file and call an Azure Function.
 
-1. <B>Extract Text and Translate</B>: The Azure Function calls [Azure Computer Vision Read API](https://learn.microsoft.com/en-us/azure/cognitive-services/Computer-vision/how-to/call-read-api) to read multiple pages of a PDF document in natural formatting order, extract text from images, and generate the text with lines and spaces, which is then stored in Azure Blob storage. The Azure Translator then translates the file and stores it in a blob container. The Azure Speech service generates a WAV or MP3 file from the original language and translated language text file, which is also stored in a blob container.
+1. <B>Extract Text and Translate</B>: The Azure Function calls [Azure Computer Vision Read API](https://learn.microsoft.com/en-us/azure/cognitive-services/Computer-vision/how-to/call-read-api) to read multiple pages of a PDF document in natural formatting order, extract text from images, and generate the text with lines and spaces, which is then stored in Azure Blob storage. The [Azure Translator](https://azure.microsoft.com/en-us/products/cognitive-services/translator/) then translates the file and stores it in a blob container. The [Azure Speech](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/) generates a WAV or MP3 file from the original language and translated language text file, which is also stored in a blob container.
 
 1. <B>Notify</B>: PowerAutomate triggers and moves the file to the original source location and notifies users in outlook and MS teams with an output audio file.
 
