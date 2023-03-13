@@ -6,7 +6,7 @@ This solution idea explains how to leverage [Azure Cognitive Services](https://l
 
 ![Diagram that shows how to ingest, extract and translate documents in language and audio.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility.png)
 
-![Open AI Summarization and gain further insights.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility-OPENAI.png)
+![Open AI Summarization and gain further insights.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility-OPENAI.svg)
 
 *Download a [Visio file](https://arch-center.azureedge.net/document-translation-for-language-and-audio-for-accessbility.vsdx) of this architecture.*
 
