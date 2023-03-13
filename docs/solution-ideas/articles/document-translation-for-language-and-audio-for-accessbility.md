@@ -4,11 +4,13 @@ This solution idea explains how to leverage [Azure Cognitive Services](https://l
 
 ## Architecture
 
+<B>Without OpenAI</B>
 ![Diagram that shows how to ingest, extract and translate documents in language and audio.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility.png)
 
-![Open AI Summarization and gain further insights.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility-OPENAI.png)
+<B>With OpenAI</B>
+![Open AI Summarization and gain further insights.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility-openai.svg)
 
-*Download a [Visio file](https://arch-center.azureedge.net/document-translation-for-language-and-audio-for-accessbility.vsdx) of this architecture.*
+*Download a [file](https://arch-center.azureedge.net/document-translation-for-language-and-audio-for-accessbility.vsdx) of this architecture.*
 
 ### Dataflow
  
@@ -16,15 +18,18 @@ Here is the process:
 
 1. <B>Ingest</B>: PDF documents, text files, and images can be ingested from multiple sources, such as Azure Blob storage, Outlook, OneDrive, SharePoint, or a 3rd party vendor.
 
-1. <B>Move</B>: PowerAutomate triggers and moves the file to Azure Blob storage. Blob triggers then get the original file and call an Azure Function.
+1. <B>Move</B>: PowerAutomate triggers and moves the file to Azure Blob storage. Azure function Blob triggers then get the original file and call an Azure Function.
 
 1. <B>Extract Text and Translate</B>: The Azure Function calls [Azure Computer Vision Read API](https://learn.microsoft.com/en-us/azure/cognitive-services/Computer-vision/how-to/call-read-api) to read multiple pages of a PDF document in natural formatting order, extract text from images, and generate the text with lines and spaces, which is then stored in Azure Blob storage. The [Azure Translator](https://azure.microsoft.com/en-us/products/cognitive-services/translator/) then translates the file and stores it in a blob container. The [Azure Speech](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/) generates a WAV or MP3 file from the original language and translated language text file, which is also stored in a blob container.
 
-1. <B>Notify</B>: PowerAutomate triggers and moves the file to the original source location and notifies users in outlook and MS teams with an output audio file.
-
+1. <B>Summarize & Extract Insights</B>:[OPTIONAL] Add [HTTP connector](https://learn.microsoft.com/en-us/training/modules/http-connectors/) in PowerAutomate to summarize and gain further insights the original language text file and translated text file.
+ 
+3. <B>Notify</B>: PowerAutomate triggers and moves the file to the original source location and notifies users in outlook and MS teams with an output audio file.
 
 ## Alternatives
 The Azure architecture utilizes Azure Blob storage as the default option for file storage during the entire process. However, it's also possible to use alternative storage solutions such as Sharepoint, ADLS or third-party storage options. For processing a high volume of documents, consider using Azure Logic Apps as an alternative to PowerAutomate. Azure Logic Apps can prevent you from exceeding consumption limits within your tenant and is a more cost-effective solution. To learn more about Azure Logic Apps, please refer to the [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview).
+
+For OpenAI summarization and further insights Azure function can be used as well.
 
 
 ### Components
@@ -35,6 +40,7 @@ These are the key technologies used for this technical content review and resear
 * [Azure Computer Vision](https://azure.microsoft.com/services/cognitive-services/computer-vision)
 * [Azure Speech](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/)
 * [Azure Function App](https://azure.microsoft.com/en-au/products/functions//)
+* [Azure OpenAI](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/)
 
 
 ## Scenario details
