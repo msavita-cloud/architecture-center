@@ -1,12 +1,12 @@
 [!INCLUDE [header_file](../../../includes/sol-idea-header.md)]
 
-This solution idea explains how to leverage [Azure Cognitive Services](https://learn.microsoft.com/en-us/azure/cognitive-services/) in a user-friendly manner by offering options for translation of documents, accommodating both language and audio preferences to meet accessibility standards and reach a global audience.
+This solution idea explains how to leverage [Azure Cognitive Services](https://learn.microsoft.com/en-us/azure/cognitive-services/) in a user-friendly manner by offering options for translation of documents, accommodating both language and audio preferences to meet accessibility standards and reach a global audience and also Apply OpenAI to further gain further insights from the document.
 
 ## Architecture
 
 ![Diagram that shows how to ingest, extract and translate documents in language and audio.](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility.png)
 
-*Download a [Visio file](https://arch-center.azureedge.net/document-translation-for-language-and-audio-for-accessbility.vsdx) of this architecture.*
+*Download a [SVG](https://github.com/msavita-cloud/architecture-center/blob/main/docs/solution-ideas/media/document-translation-for-language-and-audio-for-accessbility.png) of this architecture.*
 
 ### Dataflow
  
@@ -18,7 +18,9 @@ Here is the process:
 
 1. <B>Extract Text and Translate</B>: The Azure Function calls [Azure Computer Vision Read API](https://learn.microsoft.com/en-us/azure/cognitive-services/Computer-vision/how-to/call-read-api) to read multiple pages of a PDF document in natural formatting order, extract text from images, and generate the text with lines and spaces, which is then stored in Azure Blob storage. The [Azure Translator](https://azure.microsoft.com/en-us/products/cognitive-services/translator/) then translates the file and stores it in a blob container. The [Azure Speech](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/) generates a WAV or MP3 file from the original language and translated language text file, which is also stored in a blob container.
 
-1. <B>Notify</B>: PowerAutomate triggers and moves the file to the original source location and notifies users in outlook and MS teams with an output audio file.
+1. <B>Extract Insights</B>: OPTIONAL: [Azure OpenAI](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/) endpoint can summarize, get a quick overview of the key points and other relevant information from original language text and translated text file and save it in BLOB container.
+
+1. <B>Notify</B>: PowerAutomate triggers and moves the files to the original source location and notifies users in outlook and MS teams with an output audio file.
 
 
 ## Alternatives
@@ -33,6 +35,7 @@ These are the key technologies used for this technical content review and resear
 * [Azure Computer Vision](https://azure.microsoft.com/services/cognitive-services/computer-vision)
 * [Azure Speech](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/)
 * [Azure Function App](https://azure.microsoft.com/en-au/products/functions//)
+* [Azure OpenAI](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/)
 
 
 ## Scenario details
@@ -42,6 +45,7 @@ This solution uses multiple [Cognitive Services](https://learn.microsoft.com/en-
 ### Potential use cases
 
 By leveraging this cloud-based solution idea that can provide comprehensive translation services on demand, organizations can easily reach out to a wider audience without worrying about language barriers. This can help to break down communication barriers and ensure that services are easily accessible for people of all cultures, languages, locations, and abilities.
+ 
 
 In addition, by embracing digital transformation, organizations can improve their efficiency, reduce costs, and enhance the overall customer experience. Digital transformation involves adopting new technologies and processes to streamline operations and provide a more seamless experience for customers. 
 
